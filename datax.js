@@ -12,6 +12,8 @@ const CONFIG = {
 const I18N = {
   ar: {
     nav_features: "المميزات", nav_how: "كيف يعمل", nav_versions: "النسخ", nav_faq: "أسئلة شائعة", nav_about: "عن المشروع",
+    versions_title: "اختر نسخة DATA X", v1_label: "النسخة الأولى", v1_title: "النسخة الأولى",
+    v1_description: "الإصدار الأساسي من DATA X.",
     announcement: "هذه نسخة تجريبية، وما زلنا نعمل على تطويرها. ترقبوا تحديثات جديدة خلال الأيام القادمة.",
     hero_lead: "مساعد ذكاء اصطناعي شخصي يعمل على جهازك: يبرمج، يصمم، ويمنتج الفيديوهات — مجاناً وبدون اشتراك.",
     dl_btn: "⬇ تحميل DATA X لويندوز", b_free: "مجاني 100%", b_private: "يعمل على جهازك", b_lang: "عربي + English",
@@ -44,6 +46,8 @@ const I18N = {
   },
   en: {
     nav_features: "Features", nav_how: "How it works", nav_versions: "Versions", nav_faq: "FAQ", nav_about: "About",
+    versions_title: "Choose your DATA X version", v1_label: "Version 1", v1_title: "The original version",
+    v1_description: "The original DATA X release.",
     announcement: "This is a demo version, and we're still working on it. Stay tuned for updates in the coming days.",
     hero_lead: "A personal AI assistant that runs on your own PC: it codes, designs and edits videos — free, no subscription.",
     dl_btn: "⬇ Download DATA X for Windows", b_free: "100% free", b_private: "Runs on your PC", b_lang: "عربي + English",
@@ -96,7 +100,7 @@ function render() {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const k = el.dataset.i18n;
     const txt = state.kind === "exe" && t[k + "_exe"] ? t[k + "_exe"] : t[k];
-    el.textContent = txt.replace("{name}", CONFIG.author[state.lang]);
+    if (typeof txt === "string") el.textContent = txt.replace("{name}", CONFIG.author[state.lang]);
   });
   $("#lang").textContent = state.lang === "ar" ? "EN" : "عربي";
   $("#dl-note").textContent = t[state.note.k].replace("{v}", state.note.v || "").replace("{mb}", state.note.mb || "");
@@ -163,7 +167,7 @@ function init() {
   let saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) { /* ignore */ }
   const browserAr = (navigator.language || "ar").toLowerCase().startsWith("ar");
-  state.lang = saved || (browserAr ? "ar" : "en");
+  state.lang = saved === "ar" || saved === "en" ? saved : (browserAr ? "ar" : "en");
   $("#year").textContent = new Date().getFullYear();
   $("#lang").addEventListener("click", () => setLang(state.lang === "ar" ? "en" : "ar"));
   const menu = $("#menu");
