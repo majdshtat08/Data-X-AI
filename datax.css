@@ -12,6 +12,7 @@ nav{display:flex;gap:26px}nav a{text-decoration:none;color:var(--mu)}nav a:hover
 .o1{width:380px;height:380px;background:var(--c1);top:-80px;inset-inline-start:8%}.o2{width:340px;height:340px;background:var(--c2);top:60px;inset-inline-end:8%;animation-delay:-6s}
 @keyframes float{50%{transform:translateY(40px) scale(1.08)}}
 .logo{border-radius:26px;box-shadow:0 20px 60px #8b5cf655}
+.announcement{display:table;margin:0 auto 28px;padding:8px 18px;border:1px solid #8b5cf655;border-radius:30px;background:#8b5cf61a;color:var(--tx);font-size:15px}
 h1{font-size:clamp(46px,9vw,92px);line-height:1.15;margin:14px 0;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
 .lead{max-width:680px;margin:0 auto 30px;color:var(--mu);font-size:21px}
 .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}

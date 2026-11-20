@@ -12,6 +12,7 @@ const CONFIG = {
 const I18N = {
   ar: {
     nav_features: "المميزات", nav_how: "كيف يعمل", nav_faq: "أسئلة شائعة", nav_about: "عن المشروع",
+    announcement: "هذه نسخة تجريبية، وما زلنا نعمل على تطويرها. ترقبوا تحديثات جديدة خلال الأيام القادمة.",
     hero_lead: "مساعد ذكاء اصطناعي شخصي يعمل على جهازك: يبرمج، يصمم، ويمنتج الفيديوهات — مجاناً وبدون اشتراك.",
     dl_btn: "⬇ تحميل DATA X لويندوز", b_free: "مجاني 100%", b_private: "يعمل على جهازك", b_lang: "عربي + English",
     f_title: "شو بيعمل DATA X؟",
@@ -39,6 +40,7 @@ const I18N = {
   },
   en: {
     nav_features: "Features", nav_how: "How it works", nav_faq: "FAQ", nav_about: "About",
+    announcement: "This is a demo version, and we're still working on it. Stay tuned for updates in the coming days.",
     hero_lead: "A personal AI assistant that runs on your own PC: it codes, designs and edits videos — free, no subscription.",
     dl_btn: "⬇ Download DATA X for Windows", b_free: "100% free", b_private: "Runs on your PC", b_lang: "عربي + English",
     f_title: "What can DATA X do?",
