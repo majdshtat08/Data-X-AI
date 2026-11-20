@@ -11,7 +11,7 @@ const CONFIG = {
 // ───────── النصوص (عربي / English) ─────────
 const I18N = {
   ar: {
-    nav_features: "المميزات", nav_how: "كيف يعمل", nav_faq: "أسئلة شائعة", nav_about: "عن المشروع",
+    nav_features: "المميزات", nav_how: "كيف يعمل", nav_versions: "النسخ", nav_faq: "أسئلة شائعة", nav_about: "عن المشروع",
     announcement: "هذه نسخة تجريبية، وما زلنا نعمل على تطويرها. ترقبوا تحديثات جديدة خلال الأيام القادمة.",
     hero_lead: "مساعد ذكاء اصطناعي شخصي يعمل على جهازك: يبرمج، يصمم، ويمنتج الفيديوهات — مجاناً وبدون اشتراك.",
     dl_btn: "⬇ تحميل DATA X لويندوز", b_free: "مجاني 100%", b_private: "يعمل على جهازك", b_lang: "عربي + English",
@@ -35,11 +35,15 @@ const I18N = {
     q4_q: "هل يعمل على ماك أو لينكس؟", q4_a: "النسخة الجاهزة لويندوز حالياً. الكود مفتوح المصدر ويمكن تشغيله على أنظمة أخرى بتعديلات بسيطة.",
     a_title: "عن المشروع", a_text: "صُنع بواسطة {name} — رئيس Data X Team",
     end_t: "جاهز تجرّب؟", foot: "صُنع بحب للمبرمجين العرب",
+    v2_label: "إصدار جديد", v2_title: "النسخة الثانية المحسّنة",
+    v2_description: "حمّل النسخة الثانية من DATA X. هذا تنزيل مستقل عن النسخة الأولى.",
+    v2_dl_btn: "⬇ تحميل النسخة الثانية", v2_note: "ملف ZIP • ويندوز",
+    v2_missing: "تنزيل النسخة الثانية غير متاح حالياً.",
     note_ver: "الإصدار {v} • حجم {mb} MB • ويندوز 10/11", note_zip: "ملف ZIP • بعد فك الضغط شغّل START_DATAX.bat • ويندوز 10/11",
     note_missing: "تنبيه: ملف التطبيق غير مرفوع بعد. أضِف downloads/DATAX-App.zip أو الإصدار DATAX.exe على GitHub.",
   },
   en: {
-    nav_features: "Features", nav_how: "How it works", nav_faq: "FAQ", nav_about: "About",
+    nav_features: "Features", nav_how: "How it works", nav_versions: "Versions", nav_faq: "FAQ", nav_about: "About",
     announcement: "This is a demo version, and we're still working on it. Stay tuned for updates in the coming days.",
     hero_lead: "A personal AI assistant that runs on your own PC: it codes, designs and edits videos — free, no subscription.",
     dl_btn: "⬇ Download DATA X for Windows", b_free: "100% free", b_private: "Runs on your PC", b_lang: "عربي + English",
@@ -63,6 +67,10 @@ const I18N = {
     q4_q: "Does it work on Mac or Linux?", q4_a: "The ready-made build is for Windows for now. The source is open and can be adapted to other systems.",
     a_title: "About the project", a_text: "Created by {name} — President of Data X Team",
     end_t: "Ready to try it?", foot: "Built with love for developers",
+    v2_label: "New release", v2_title: "The improved second version",
+    v2_description: "Download the second version of DATA X. This is a separate download from the first version.",
+    v2_dl_btn: "⬇ Download version 2", v2_note: "ZIP file • Windows",
+    v2_missing: "The second version download is currently unavailable.",
     note_ver: "Version {v} • {mb} MB • Windows 10/11", note_zip: "ZIP file • extract it, then run START_DATAX.bat • Windows 10/11",
     note_missing: "Notice: the app file is not uploaded yet. Add downloads/DATAX-App.zip or upload DATAX.exe in GitHub Releases.",
   },
@@ -70,7 +78,7 @@ const I18N = {
 
 // ───────── منطق ─────────
 const $ = (s) => document.querySelector(s);
-const state = { lang: "ar", kind: "zip", note: { k: "note_zip" } };
+const state = { lang: "ar", kind: "zip", note: { k: "note_zip" }, v2Missing: false };
 
 /** يستنتج اسم المستودع (owner/repo) من رابط GitHub Pages: owner.github.io/repo/ */
 function detectRepo(host, path) {
@@ -92,6 +100,7 @@ function render() {
   });
   $("#lang").textContent = state.lang === "ar" ? "EN" : "عربي";
   $("#dl-note").textContent = t[state.note.k].replace("{v}", state.note.v || "").replace("{mb}", state.note.mb || "");
+  $("#dl-v2-note").textContent = state.v2Missing ? t.v2_missing : t.v2_note;
 }
 
 function setLang(l) {
@@ -104,6 +113,7 @@ function setLang(l) {
 async function setupDownload() {
   const links = [$("#dl"), $("#dl2")];
   links.forEach((a) => { a.href = CONFIG.zip; a.setAttribute("download", ""); });
+  const v2Link = $("#dl-v2");
 
   const setUnavailable = () => {
     state.kind = "zip";
@@ -119,6 +129,16 @@ async function setupDownload() {
   const repo = detectRepo(location.hostname, location.pathname);
   if (repo) { $("#gh").href = `https://github.com/${repo}`; $("#gh").hidden = false; }
   render();
+
+  try {
+    const v2Res = await fetch(v2Link.href, { method: "HEAD" });
+    if (!v2Res.ok) throw new Error(`Version 2 download check failed: ${v2Res.status}`);
+  } catch (e) {
+    v2Link.removeAttribute("href");
+    v2Link.setAttribute("aria-disabled", "true");
+    v2Link.classList.add("disabled");
+    state.v2Missing = true;
+  }
 
   let zipAvailable = false;
   try {
