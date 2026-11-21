@@ -3,7 +3,7 @@
 // ───────── إعدادات (غالباً لا تحتاج لتعديل شيء) ─────────
 const CONFIG = {
   repo: "",            // مثال: "username/datax" — اتركه فارغاً ليُكتشف تلقائياً من رابط الموقع على GitHub Pages
-  zip: "downloads/DATAX-App.zip",  // الملف المرفوع داخل الموقع نفسه (يعمل دائماً)
+  zip: "downloads/DATAX-App-v3.zip",  // أحدث نسخة مرفوعة داخل الموقع
   asset: "DATAX.exe",              // إن وُجد إصدار .exe على GitHub يُستخدم بدلاً منه تلقائياً
   author: { ar: "مجد الدين شتات", en: "Majd Al-Din Shattat" },
 };
@@ -14,7 +14,7 @@ const I18N = {
     nav_features: "المميزات", nav_how: "كيف يعمل", nav_versions: "النسخ", nav_faq: "أسئلة شائعة", nav_about: "عن المشروع",
     versions_title: "اختر نسخة DATA X", v1_label: "النسخة الأولى", v1_title: "النسخة الأولى",
     v1_description: "الإصدار الأساسي من DATA X.",
-    announcement: "هذه نسخة تجريبية، وما زلنا نعمل على تطويرها. ترقبوا تحديثات جديدة خلال الأيام القادمة.",
+    announcement: "النسخة الثالثة متاحة الآن — حمّلها واختبر آخر التحسينات.",
     hero_lead: "مساعد ذكاء اصطناعي شخصي يعمل على جهازك: يبرمج، يصمم، ويمنتج الفيديوهات — مجاناً وبدون اشتراك.",
     dl_btn: "⬇ تحميل DATA X لويندوز", b_free: "مجاني 100%", b_private: "يعمل على جهازك", b_lang: "عربي + English",
     f_title: "شو بيعمل DATA X؟",
@@ -41,6 +41,10 @@ const I18N = {
     v2_description: "حمّل النسخة الثانية من DATA X. هذا تنزيل مستقل عن النسخة الأولى.",
     v2_dl_btn: "⬇ تحميل النسخة الثانية", v2_note: "ملف ZIP • ويندوز",
     v2_missing: "تنزيل النسخة الثانية غير متاح حالياً.",
+    v1_dl_btn: "⬇ تحميل النسخة الأولى",
+    v3_label: "إصدار أحدث", v3_title: "النسخة الثالثة المحسّنة",
+    v3_description: "حمّل أحدث نسخة من DATA X مع تحسينات وتجربة أكثر اكتمالاً.",
+    v3_dl_btn: "⬇ تحميل النسخة الثالثة", v3_note: "ملف ZIP • ويندوز • 22 MB تقريباً",
     note_ver: "الإصدار {v} • حجم {mb} MB • ويندوز 10/11", note_zip: "ملف ZIP • بعد فك الضغط شغّل START_DATAX.bat • ويندوز 10/11",
     note_missing: "تنبيه: ملف التطبيق غير مرفوع بعد. أضِف downloads/DATAX-App.zip أو الإصدار DATAX.exe على GitHub.",
   },
@@ -75,6 +79,10 @@ const I18N = {
     v2_description: "Download the second version of DATA X. This is a separate download from the first version.",
     v2_dl_btn: "⬇ Download version 2", v2_note: "ZIP file • Windows",
     v2_missing: "The second version download is currently unavailable.",
+    v1_dl_btn: "⬇ Download version 1",
+    v3_label: "Latest release", v3_title: "Improved version 3",
+    v3_description: "Download the latest DATA X release with improvements and a more complete experience.",
+    v3_dl_btn: "⬇ Download version 3", v3_note: "ZIP file • Windows • approx. 22 MB",
     note_ver: "Version {v} • {mb} MB • Windows 10/11", note_zip: "ZIP file • extract it, then run START_DATAX.bat • Windows 10/11",
     note_missing: "Notice: the app file is not uploaded yet. Add downloads/DATAX-App.zip or upload DATAX.exe in GitHub Releases.",
   },
@@ -115,7 +123,7 @@ function setLang(l) {
 
 /** الزر يعمل دائماً ويحمل ملف ZIP المرفوع داخل الموقع. */
 async function setupDownload() {
-  const links = [$("#dl"), $("#dl2")];
+  const links = [$("#dl"), $("#dl-v3")];
   links.forEach((a) => { a.href = CONFIG.zip; a.setAttribute("download", ""); });
   const v2Link = $("#dl-v2");
 
