@@ -3,7 +3,7 @@
 // ───────── إعدادات (غالباً لا تحتاج لتعديل شيء) ─────────
 const CONFIG = {
   repo: "",            // مثال: "username/datax" — اتركه فارغاً ليُكتشف تلقائياً من رابط الموقع على GitHub Pages
-  zip: "downloads/DATAX-App-v3.zip",  // أحدث نسخة مرفوعة داخل الموقع
+  zip: "downloads/DATAX-App-v4.zip",  // أحدث نسخة مرفوعة داخل الموقع
   asset: "DATAX.exe",              // إن وُجد إصدار .exe على GitHub يُستخدم بدلاً منه تلقائياً
   author: { ar: "مجد الدين شتات", en: "Majd Al-Din Shattat" },
 };
@@ -14,7 +14,7 @@ const I18N = {
     nav_features: "المميزات", nav_how: "كيف يعمل", nav_versions: "النسخ", nav_faq: "أسئلة شائعة", nav_about: "عن المشروع",
     versions_title: "اختر نسخة DATA X", v1_label: "النسخة الأولى", v1_title: "النسخة الأولى",
     v1_description: "الإصدار الأساسي من DATA X.",
-    announcement: "النسخة الثالثة متاحة الآن — حمّلها واختبر آخر التحسينات.",
+    announcement: "النسخة الرابعة متاحة الآن — حمّلها وجرّب DATA X.",
     hero_lead: "مساعد ذكاء اصطناعي شخصي يعمل على جهازك: يبرمج، يصمم، ويمنتج الفيديوهات — مجاناً وبدون اشتراك.",
     dl_btn: "⬇ تحميل DATA X لويندوز", b_free: "مجاني 100%", b_private: "يعمل على جهازك", b_lang: "عربي + English",
     f_title: "شو بيعمل DATA X؟",
@@ -26,7 +26,7 @@ const I18N = {
     f6_t: "خصوصية كاملة", f6_d: "الذكاء الاصطناعي بيشتغل محلياً على جهازك. محادثاتك وملفاتك ما بتطلع منه.",
     h_title: "ابدأ بثلاث خطوات",
     s1_t: "نزّل الملف", s1_d: "اضغط زر التحميل وراح ينزل ملف ZIP. فك الضغط عنه (كليك يمين ← Extract All) على سطح المكتب.", s1_d_exe: "اضغط زر التحميل. هو ملف واحد، ما بحتاج تثبّت بايثون ولا أي برنامج بنفسك.",
-    s2_t: "شغّله أول مرة", s2_d: "دوبل كليك على START_DATAX.bat. أول مرة بيثبّت لحاله كل ما يلزم (بايثون، محرك الذكاء الاصطناعي، النموذج). بياخد دقائق مرة وحدة، وبعدها بيظهر اختصار DATA X على سطح المكتب.", s2_d_exe: "بيجهّز نفسه لحاله: بيثبّت محرك الذكاء الاصطناعي وبينزّل النموذج المناسب لجهازك. هاد بياخد دقائق مرة وحدة بس.",
+    s2_t: "شغّله أول مرة", s2_d: "بعد فك الضغط، شغّل DATAX-v4.exe. عند أول تشغيل يجهّز Ollama وFFmpeg وينزّل النماذج المحلية اللازمة؛ يحتاج ذلك اتصال إنترنت ومساحة كافية.",
     s3_t: "اطلب ما تريد", s3_d: "اكتب بالعربي: «اعمل لي موقع»، «صمم غلاف»، «جهّز ريل». وشوف النتيجة قدامك.",
     req: "المتطلبات: ويندوز 10 أو 11 • رام 8GB أو أكثر • مساحة فاضية حوالي 5GB • إنترنت أول مرة فقط.",
     q_title: "أسئلة شائعة",
@@ -45,14 +45,17 @@ const I18N = {
     v3_label: "إصدار أحدث", v3_title: "النسخة الثالثة المحسّنة",
     v3_description: "حمّل أحدث نسخة من DATA X مع تحسينات وتجربة أكثر اكتمالاً.",
     v3_dl_btn: "⬇ تحميل النسخة الثالثة", v3_note: "ملف ZIP • ويندوز • 22 MB تقريباً",
-    note_ver: "الإصدار {v} • حجم {mb} MB • ويندوز 10/11", note_zip: "ملف ZIP • بعد فك الضغط شغّل START_DATAX.bat • ويندوز 10/11",
-    note_missing: "تنبيه: ملف التطبيق غير مرفوع بعد. أضِف downloads/DATAX-App.zip أو الإصدار DATAX.exe على GitHub.",
+    note_ver: "الإصدار {v} • حجم {mb} MB • ويندوز 10/11", note_zip: "ملف ZIP • بعد فك الضغط شغّل DATAX-v4.exe • ويندوز 10/11",
+    note_missing: "تنبيه: ملف التطبيق غير مرفوع بعد. أضِف downloads/DATAX-App-v4.zip أو الإصدار DATAX.exe على GitHub.",
+    v4_label: "أحدث إصدار", v4_title: "النسخة الرابعة",
+    v4_description: "حمّل النسخة الرابعة من DATA X مع البرنامج التنفيذي وملفات المشروع.",
+    v4_dl_btn: "⬇ تحميل النسخة الرابعة", v4_note: "ملف ZIP • ويندوز • 10 MB تقريباً",
   },
   en: {
     nav_features: "Features", nav_how: "How it works", nav_versions: "Versions", nav_faq: "FAQ", nav_about: "About",
     versions_title: "Choose your DATA X version", v1_label: "Version 1", v1_title: "The original version",
     v1_description: "The original DATA X release.",
-    announcement: "This is a demo version, and we're still working on it. Stay tuned for updates in the coming days.",
+    announcement: "Version 4 is now available — download and try DATA X.",
     hero_lead: "A personal AI assistant that runs on your own PC: it codes, designs and edits videos — free, no subscription.",
     dl_btn: "⬇ Download DATA X for Windows", b_free: "100% free", b_private: "Runs on your PC", b_lang: "عربي + English",
     f_title: "What can DATA X do?",
@@ -64,7 +67,7 @@ const I18N = {
     f6_t: "Full privacy", f6_d: "The AI runs locally on your machine. Your chats and files never leave it.",
     h_title: "Get started in 3 steps",
     s1_t: "Download the file", s1_d: "Click the download button to get a ZIP file. Extract it (right-click → Extract All) to your desktop.", s1_d_exe: "Click the download button. It's a single file — no need to install Python or anything yourself.",
-    s2_t: "Run it once", s2_d: "Double-click START_DATAX.bat. On first run it installs everything needed (Python, the AI engine, the model). A few minutes, one time only — then a DATA X shortcut appears on your desktop.", s2_d_exe: "It sets itself up: installs the AI engine and downloads the right model for your PC. This takes a few minutes, one time only.",
+    s2_t: "Run it once", s2_d: "Extract the ZIP and run DATAX-v4.exe. On first launch it prepares Ollama and FFmpeg and downloads the required local models; an internet connection and enough disk space are needed.",
     s3_t: "Ask for anything", s3_d: "Type: “build me a website”, “design a cover”, “make a reel”. Watch it happen.",
     req: "Requirements: Windows 10 or 11 • 8GB+ RAM • about 5GB free space • internet on first run only.",
     q_title: "FAQ",
@@ -83,8 +86,11 @@ const I18N = {
     v3_label: "Latest release", v3_title: "Improved version 3",
     v3_description: "Download the latest DATA X release with improvements and a more complete experience.",
     v3_dl_btn: "⬇ Download version 3", v3_note: "ZIP file • Windows • approx. 22 MB",
-    note_ver: "Version {v} • {mb} MB • Windows 10/11", note_zip: "ZIP file • extract it, then run START_DATAX.bat • Windows 10/11",
-    note_missing: "Notice: the app file is not uploaded yet. Add downloads/DATAX-App.zip or upload DATAX.exe in GitHub Releases.",
+    note_ver: "Version {v} • {mb} MB • Windows 10/11", note_zip: "ZIP file • extract it, then run DATAX-v4.exe • Windows 10/11",
+    note_missing: "Notice: the app file is not uploaded yet. Add downloads/DATAX-App-v4.zip or upload DATAX.exe in GitHub Releases.",
+    v4_label: "Latest release", v4_title: "Version 4",
+    v4_description: "Download DATA X version 4 with the executable and project files.",
+    v4_dl_btn: "⬇ Download version 4", v4_note: "ZIP file • Windows • approx. 10 MB",
   },
 };
 
@@ -123,7 +129,7 @@ function setLang(l) {
 
 /** الزر يعمل دائماً ويحمل ملف ZIP المرفوع داخل الموقع. */
 async function setupDownload() {
-  const links = [$("#dl"), $("#dl-v3")];
+  const links = [$("#dl"), $("#dl-v4")];
   links.forEach((a) => { a.href = CONFIG.zip; a.setAttribute("download", ""); });
   const v2Link = $("#dl-v2");
 
